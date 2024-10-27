@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://by26x8xbymwcr"]
+[gd_scene load_steps=6 format=3 uid="uid://by26x8xbymwcr"]
 
 [ext_resource type="Texture2D" uid="uid://cwxdn7jp8ntcp" path="res://assets/Tilesheet/towerDefense_tilesheet.png" id="1_8uqgd"]
+[ext_resource type="PackedScene" uid="uid://bur8yv82tj7nw" path="res://Mobs/Soldier A.tscn" id="2_x30lu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_duddt"]
 texture = ExtResource("1_8uqgd")
@@ -4391,3 +4392,7 @@ curve = SubResource("Curve2D_fb3oh")
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 position = Vector2(119, 15)
 rotation = 1.5609
+
+[node name="Soldier A" parent="Path2D/PathFollow2D" instance=ExtResource("2_x30lu")]
+position = Vector2(-16.1774, 118.846)
+rotation = -1.5609
