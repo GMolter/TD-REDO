@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://citigm5686ik"]
 
-[ext_resource type="PackedScene" uid="uid://bur8yv82tj7nw" path="res://Mobs/Soldier A.tscn" id="1_q17th"]
+[ext_resource type="PackedScene" uid="uid://bur8yv82tj7nw" path="res://Mobs/soldier_a.tscn" id="1_q17th"]
 
 [sub_resource type="Curve2D" id="Curve2D_fb3oh"]
 _data = {
@@ -16,3 +16,4 @@ position = Vector2(119, 15)
 rotation = 1.5609
 
 [node name="Soldier A" parent="PathFollow2D" instance=ExtResource("1_q17th")]
+speed = 200
