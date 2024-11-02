@@ -1,26 +1,26 @@
 extends CharacterBody2D
 
-
 var target
 var Speed = 1000
 var pathName = ""
 var bulletDamage
 
 func _physics_process(delta):
-	
 	var pathSpawnerNode = get_tree().get_root().get_node("Main/PathSpawner")
 	for i in pathSpawnerNode.get_child_count():
 		if pathSpawnerNode.get_child(i).name == pathName:
 			target = pathSpawnerNode.get_child(i).get_child(0).get_child(0).global_position
-
-	velocity = global_position.direction_to(target) *Speed
-
+			
+	velocity = global_position.direction_to(target) * Speed
 	look_at(target)
-	
 	move_and_slide()
 
-func _on_area_2d_body_entered(body):
-	if "Solider A" in body.name:
+
+func _on_bullet_body_entered(body):
+	print("Contact with " + body.name)
+
+	# Check if the body is specifically "Soldier A" (or any soldier you want to detect)
+	if "Soldier A" in body.name:
+		print("Contact with Soldier A")
 		body.Health -= bulletDamage
 		queue_free()
-		
