@@ -1,8 +1,28 @@
-[gd_scene load_steps=8 format=3 uid="uid://by26x8xbymwcr"]
+[gd_scene load_steps=9 format=3 uid="uid://by26x8xbymwcr"]
 
 [ext_resource type="Texture2D" uid="uid://cwxdn7jp8ntcp" path="res://assets/Tilesheet/towerDefense_tilesheet.png" id="1_8uqgd"]
 [ext_resource type="Script" path="res://PathSpawner.gd" id="2_k06k7"]
 [ext_resource type="PackedScene" uid="uid://cq0me8180nn3b" path="res://ui.tscn" id="3_6koqc"]
+
+[sub_resource type="GDScript" id="GDScript_40oui"]
+script/source = "extends Node2D
+
+
+func _process(delta):
+	pass
+	
+	
+
+
+
+func _on_end_body_entered(body):
+	if \"Soldier A\" in body.name:
+		if Game.Health > 0:
+			Game.Health -= 1
+			pass
+		else:
+			get_tree().quit()
+"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_duddt"]
 texture = ExtResource("1_8uqgd")
@@ -4381,10 +4401,11 @@ func _process(delta):
 		Towers.append(get_child(i))
 "
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kunt5"]
-size = Vector2(103, 42)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xapch"]
+size = Vector2(103.5, 20)
 
 [node name="Main" type="Node2D"]
+script = SubResource("GDScript_40oui")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(1, 0)
@@ -4403,10 +4424,11 @@ script = SubResource("GDScript_xuvtl")
 
 [node name="UI" parent="." instance=ExtResource("3_6koqc")]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="End" type="Area2D" parent="."]
 
-[node name="End" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1408, 1066)
-shape = SubResource("RectangleShape2D_kunt5")
+[node name="EndLine" type="CollisionShape2D" parent="End"]
+position = Vector2(1405.25, 1078)
+shape = SubResource("RectangleShape2D_xapch")
 
 [connection signal="timeout" from="PathSpawner/Timer" to="PathSpawner" method="_on_timer_timeout"]
+[connection signal="body_entered" from="End" to="." method="_on_end_body_entered"]

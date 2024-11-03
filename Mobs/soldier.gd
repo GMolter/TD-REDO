@@ -9,7 +9,7 @@ func _process(delta):
 	
 	if get_parent().get_progress_ratio() == 1:
 		death()
-		Game.Health -= 1
+		
 		
 	if Health <= 0:
 		Game.Gold += 1
