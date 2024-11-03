@@ -23,4 +23,3 @@ func _on_gui_input(event):
 		path.add_child(tempTower)
 		tempTower.global_position = event.global_position
 		tempTower.get_node("Area").hide()
-		
