@@ -7,6 +7,13 @@ var pathName
 var currTargets = []
 var curr
 
+func _process(delta):
+	if is_instance_valid(curr):
+		self.look_at(curr.global_position)
+	else:
+		for i in get_node("BulletContainer").get_child_count():
+			get_node("BulletContainer").get_child(i).queue_free()
+
 func _on_tower_body_entered(body):
 	if "Soldier A" in body.name:
 		var tempArray = []
@@ -33,3 +40,6 @@ func _on_tower_body_entered(body):
 		tempBullet.bulletDamage = bulletDamage
 		get_node("BulletContainer").add_child(tempBullet)
 		tempBullet.global_position = $Aim.global_position
+
+func _on_tower_body_exited(body):
+	currTargets = get_node("Tower").get_overlapping_bodies()

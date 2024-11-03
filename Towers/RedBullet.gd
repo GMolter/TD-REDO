@@ -17,10 +17,7 @@ func _physics_process(delta):
 
 
 func _on_bullet_body_entered(body):
-	print("Contact with " + body.name)
-
-	# Check if the body is specifically "Soldier A" (or any soldier you want to detect)
+	
 	if "Soldier A" in body.name:
-		print("Contact with Soldier A")
 		body.Health -= bulletDamage
 		queue_free()
